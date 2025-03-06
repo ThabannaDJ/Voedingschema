@@ -4,141 +4,186 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Whole Food Sportdieet Schema</title>
-  <!-- Google Fonts voor een stoere uitstraling -->
+  <!-- Google Fonts voor een moderne uitstraling -->
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
   <style>
-    /* Basis opmaak */
+    :root {
+      --primary-color: #ff5722;
+      --secondary-color: #3a3a3a;
+      --background-color: #1e1e1e;
+      --card-background: #2c2c2c;
+      --text-color: #f1f1f1;
+      --accent-color: #e64a19;
+      --border-radius: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Roboto', sans-serif;
-      background: linear-gradient(135deg, #1e1e1e, #323232);
-      color: #f1f1f1;
+      background: linear-gradient(135deg, var(--background-color), #323232);
+      color: var(--text-color);
       margin: 0;
       padding: 10px;
+      line-height: 1.6;
     }
+
     .container {
       max-width: 800px;
       margin: 0 auto;
-      padding: 10px;
+      padding: 20px;
     }
+
     h1 {
       font-family: 'Oswald', sans-serif;
       font-size: 2em;
-      color: #ff5722;
+      color: var(--primary-color);
       text-align: center;
+      margin-bottom: 20px;
+    }
+
+    p {
       margin-bottom: 10px;
     }
-    p {
-      margin: 0 0 10px;
+
+    /* Header en instructie */
+    .intro {
+      background: var(--card-background);
+      padding: 15px;
+      border-radius: var(--border-radius);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+      margin-bottom: 20px;
     }
+
     /* Voortgangs-indicator styling */
     .progress-container {
       display: flex;
       justify-content: space-around;
-      margin: 10px 0;
-      font-size: 1.2em;
+      margin: 15px 0;
+      font-size: 1.1em;
       font-weight: bold;
-      color: #ff5722;
+      color: var(--primary-color);
     }
-    /* Details en summary styling */
+
+    /* Kaart stijl voor elke maaltijd */
     details {
-      background: #2c2c2c;
-      border: 2px solid #ff5722;
-      border-radius: 8px;
-      margin: 8px 0;
+      background: var(--card-background);
+      border: 2px solid var(--primary-color);
+      border-radius: var(--border-radius);
+      margin: 15px 0;
       padding: 0;
-      transition: all 0.3s ease;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+      transition: transform 0.2s ease;
+    }
+    details:hover {
+      transform: scale(1.01);
     }
     summary {
       font-family: 'Oswald', sans-serif;
       font-weight: bold;
       font-size: 1.2em;
-      padding: 10px;
-      list-style: none;
+      padding: 12px;
       cursor: pointer;
-      color: #ff5722;
-      background-color: #3a3a3a;
-      border-radius: 8px;
+      color: var(--primary-color);
+      background-color: var(--secondary-color);
+      border-radius: var(--border-radius) var(--border-radius) 0 0;
+      outline: none;
     }
     summary::-webkit-details-marker {
       display: none;
     }
     details[open] summary {
-      border-bottom: 1px solid #ff5722;
+      border-bottom: 1px solid var(--primary-color);
     }
     .meal-content {
-      padding: 10px 15px 15px 15px;
+      padding: 15px;
     }
-    ul {
-      padding-left: 20px;
-      margin: 5px 0;
+    .meal-content ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
     }
-    li {
-      margin: 5px 0;
+    .meal-content li {
+      margin: 8px 0;
     }
     .note {
       font-style: italic;
       color: #ccc;
-      margin-top: 5px;
+      margin-top: 8px;
     }
+
     /* Knoppen styling */
     .button-container {
       text-align: center;
-      margin-bottom: 15px;
+      margin: 20px 0;
     }
     button {
-      background-color: #ff5722;
+      background-color: var(--primary-color);
       color: white;
       border: none;
-      padding: 10px 15px;
+      padding: 10px 18px;
       margin: 5px;
-      border-radius: 5px;
+      border-radius: var(--border-radius);
       cursor: pointer;
       font-family: 'Oswald', sans-serif;
       font-size: 1em;
       box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-      transition: background-color 0.3s ease;
+      transition: background-color 0.3s ease, transform 0.2s ease;
     }
     button:hover {
-      background-color: #e64a19;
+      background-color: var(--accent-color);
+      transform: translateY(-2px);
     }
+
     /* Custom styled checkboxes */
     input[type="checkbox"] {
       -webkit-appearance: none;
       appearance: none;
       width: 20px;
       height: 20px;
-      border: 2px solid #ff5722;
+      border: 2px solid var(--primary-color);
       border-radius: 4px;
       margin-right: 8px;
       cursor: pointer;
       position: relative;
-      background-color: transparent;
       vertical-align: middle;
     }
     input[type="checkbox"]:checked {
-      background-color: #ff5722;
+      background-color: var(--primary-color);
     }
     input[type="checkbox"]:checked::after {
       content: "\2713";
-      color: #ffffff;
+      color: white;
       position: absolute;
       top: 0px;
       left: 4px;
       font-size: 18px;
     }
+
+    /* Dagelijkse totalen */
+    #dailyTotals {
+      margin-top: 20px;
+      font-size: 1.2em;
+      font-weight: bold;
+      text-align: center;
+      background: var(--card-background);
+      padding: 15px;
+      border-radius: var(--border-radius);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Voedingsschema (Whole Food Sportdieet)</h1>
-    <p>
-      <strong>Profiel:</strong> 21 jaar, 67&nbsp;kg (doel 60&nbsp;kg). 
-      <strong>Doel:</strong> Vetverlies en lean spieropbouw.
-      <br><strong>Training:</strong> dagelijks om 21:00 uur.
-    </p>
-    <p><em>Tik op een maaltijd/snack om details te bekijken, vink de box aan als je deze hebt uitgevoerd, en wissel maaltijden voor variatie. Onderaan zie je ook de dagelijkse totalen van calorieën en macro’s.</em></p>
+    <h1>Whole Food Sportdieet Schema</h1>
+    <div class="intro">
+      <p><strong>Profiel:</strong> 21 jaar, 67 kg (doel: 60 kg). <strong>Doel:</strong> Vetverlies en lean spieropbouw. <strong>Training:</strong> Dagelijks om 21:00 uur.</p>
+      <p><em>Bekijk de maaltijden, vink af wat je hebt gegeten en wissel opties voor dagelijkse variatie. Onderaan zie je de totale macro’s en calorieën voor de dag.</em></p>
+    </div>
 
-    <!-- Twee voortgangs-indicatoren voor checklists -->
+    <!-- Voortgangs-indicatoren -->
     <div class="progress-container">
       <div id="progressMeals">Maaltijden: 0 van 0 items voltooid</div>
       <div id="progressSupplements">Supplementen: 0 van 0 items voltooid</div>
@@ -160,11 +205,11 @@
           <ul>
             <li>
               <input type="checkbox" class="mealTask">
-              <strong>Eiwitrijke smoothie:</strong> 1 schep lactosevrij eiwitpoeder, 250 ml amandelmelk, 1 banaan, een handje spinazie, 50 g bessen, 1 el chiazaad.
+              <strong>Havermout met Amandelmelk, Banaan en Kaneel:</strong> 50 g havermout, 250 ml amandelmelk, 1 banaan, een snuf kaneel.
             </li>
           </ul>
-          <p class="note">Voedzaam en energiek ontbijt.</p>
-          <div class="macro-info" style="display:none;" data-cal="337" data-protein="30" data-carb="41" data-fat="6"></div>
+          <p class="note">Een klassiek en voedzaam ontbijt.</p>
+          <div class="macro-info" style="display:none;" data-cal="350" data-protein="28" data-carb="45" data-fat="8"></div>
         </div>
         <div class="button-container">
           <button onclick="swapMeal('breakfast')">Wissel Ontbijt</button>
@@ -177,10 +222,11 @@
         <div class="meal-content" id="snack1Content">
           <ul>
             <li>
-              <input type="checkbox" class="mealTask">150 g lactosevrije Griekse yoghurt, 50 g blauwe bessen, en een handje pecannoten.
+              <input type="checkbox" class="mealTask">
+              <strong>Lactosevrije Yoghurt met Muesli en Fruit:</strong> 150 g lactosevrije yoghurt, 30 g muesli, en 50 g gemengd fruit.
             </li>
           </ul>
-          <p class="note">Lichte snack met eiwit en gezonde vetten.</p>
+          <p class="note">Eenvoudige en vertrouwde snack.</p>
           <div class="macro-info" style="display:none;" data-cal="160" data-protein="23" data-carb="14" data-fat="1"></div>
         </div>
         <div class="button-container">
@@ -194,10 +240,11 @@
         <div class="meal-content" id="lunchContent">
           <ul>
             <li>
-              <input type="checkbox" class="mealTask">150 g gegrilde kipfilet, 1 middelgrote zoete aardappel (150 g), 200 g gemengde groenten, 1 el olijfolie, en 1/4 avocado.
+              <input type="checkbox" class="mealTask">
+              <strong>Gegrilde Kip met Zoete Aardappel en Broccoli:</strong> 150 g kipfilet, 150 g zoete aardappel, 200 g broccoli, 1 el olijfolie.
             </li>
           </ul>
-          <p class="note">Gebalanceerde lunch met veel eiwitten en vezels.</p>
+          <p class="note">Een vertrouwde, gebalanceerde lunch.</p>
           <div class="macro-info" style="display:none;" data-cal="485" data-protein="36" data-carb="50" data-fat="15"></div>
         </div>
         <div class="button-container">
@@ -211,10 +258,11 @@
         <div class="meal-content" id="dinnerContent">
           <ul>
             <li>
-              <input type="checkbox" class="mealTask">150 g zalmfilet, 1 kop witte rijst (150-200 g), 200 g groene groenten, bereid met 1 tl olijfolie en citroen.
+              <input type="checkbox" class="mealTask">
+              <strong>Zalm met Witte Rijst en Groene Groenten:</strong> 150 g zalmfilet, 1 kop witte rijst, 200 g gemengde groene groenten, 1 tl olijfolie.
             </li>
           </ul>
-          <p class="note">Licht maar voedzaam, rijk aan omega-3.</p>
+          <p class="note">Eenvoudig en klassiek, rijk aan omega-3.</p>
           <div class="macro-info" style="display:none;" data-cal="494" data-protein="36" data-carb="40" data-fat="20"></div>
         </div>
         <div class="button-container">
@@ -228,10 +276,11 @@
         <div class="meal-content" id="snack2Content">
           <ul>
             <li>
-              <input type="checkbox" class="mealTask">1 schep lactosevrij eiwitpoeder shaken met water of amandelmelk, en 1 kleine banaan of 1 dadel.
+              <input type="checkbox" class="mealTask">
+              <strong>Eiwitshake:</strong> 1 schep lactosevrij eiwitpoeder, 250 ml water of amandelmelk, 1 kleine banaan.
             </li>
           </ul>
-          <p class="note">Ideaal als post-workout snack.</p>
+          <p class="note">Een simpele en vertrouwde post-workout snack.</p>
           <div class="macro-info" style="display:none;" data-cal="140" data-protein="23" data-carb="3" data-fat="4"></div>
         </div>
         <div class="button-container">
@@ -245,12 +294,12 @@
     <div id="supplementsContainer">
       <h1 style="font-size:1.8em; text-align:center;">Supplementen</h1>
       <ul>
-        <li><input type="checkbox" class="supplementTask"><strong>Creatine (3–5 g/dag):</strong> Verbetert kracht en spierbehoud, veilig voor vrouwen.</li>
-        <li><input type="checkbox" class="supplementTask"><strong>Vitamine D3 (1000–2000 IU):</strong> Ondersteunt botten, spieren en immuunsysteem.</li>
-        <li><input type="checkbox" class="supplementTask"><strong>Calcium (~1000 mg/dag):</strong> Belangrijk bij een lactosevrij dieet.</li>
-        <li><input type="checkbox" class="supplementTask"><strong>IJzer (bij risico):</strong> Voorkomt tekorten, vooral bij menstruatie.</li>
-        <li><input type="checkbox" class="supplementTask"><strong>Omega-3 (visolie):</strong> 1000 mg EPA/DHA voor hart en ontstekingsremming.</li>
-        <li><input type="checkbox" class="supplementTask"><strong>Magnesium (200–400 mg):</strong> Voor spierontspanning en herstel, bij voorkeur 's avonds.</li>
+        <li><input type="checkbox" class="supplementTask"><strong>Creatine (3–5 g/dag):</strong> Verbetert kracht en spierbehoud.</li>
+        <li><input type="checkbox" class="supplementTask"><strong>Vitamine D3 (1000–2000 IU):</strong> Ondersteunt botten en spieren.</li>
+        <li><input type="checkbox" class="supplementTask"><strong>Calcium (~1000 mg/dag):</strong> Belangrijk bij lactosevrij dieet.</li>
+        <li><input type="checkbox" class="supplementTask"><strong>IJzer (bij risico):</strong> Voorkomt tekorten.</li>
+        <li><input type="checkbox" class="supplementTask"><strong>Omega-3 (visolie):</strong> 1000 mg EPA/DHA voor hart en ontsteking.</li>
+        <li><input type="checkbox" class="supplementTask"><strong>Magnesium (200–400 mg):</strong> Voor spierontspanning en herstel.</li>
       </ul>
       <p class="note" style="text-align:center;">*Gevarieerde voeding blijft essentieel voor optimale resultaten.*</p>
     </div>
@@ -262,275 +311,109 @@
   </div>
 
   <script>
-    // Receptenobject met vijf varianten per maaltijd (als voorbeeld, kun je uitbreiden)
+    /* Receptenobject met 14 varianten per maaltijdmoment (meer “normale” recepten).
+       De cheat snack opties (in snack2) komen in 2 varianten voor en mogen hoger uitvallen. */
     const recipes = {
       breakfast: [
-        {
-          content: `<ul>
-           <li><input type="checkbox" class="mealTask">
-             <strong>Eiwitrijke smoothie:</strong> 1 schep lactosevrij eiwitpoeder, 250 ml amandelmelk, 1 banaan, een handje spinazie, 50 g bessen, 1 el chiazaad.
-           </li>
-         </ul>
-         <p class="note">Voedzaam en energiek ontbijt.</p>`,
-          macros: { cal: 337, protein: 30, carb: 41, fat: 6 }
-        },
-        {
-          content: `<ul>
-           <li><input type="checkbox" class="mealTask">
-             <strong>Chia Pudding:</strong> 250 ml amandelmelk, 3 el chiazaad, 1 tl vanille, getopt met 50 g gemengde bessen en een handje walnoten.
-           </li>
-         </ul>
-         <p class="note">Stevig ontbijt vol gezonde vetten en vezels.</p>`,
-          macros: { cal: 320, protein: 25, carb: 40, fat: 8 }
-        },
-        {
-          content: `<ul>
-           <li><input type="checkbox" class="mealTask">
-             <strong>Overnight Oats:</strong> 50 g havermout, 250 ml amandelmelk, 1 el chiazaad, 50 g blauwe bessen, een snufje kaneel.
-           </li>
-         </ul>
-         <p class="note">Gemakkelijk en voedzaam, rijk aan vezels.</p>`,
-          macros: { cal: 350, protein: 28, carb: 45, fat: 7 }
-        },
-        {
-          content: `<ul>
-           <li><input type="checkbox" class="mealTask">
-             <strong>Avocado-Banaan Smoothie Bowl:</strong> Blend ½ avocado, 1 banaan, 200 ml amandelmelk; top met noten en 1 el chiazaad.
-           </li>
-         </ul>
-         <p class="note">Romig en vol gezonde vetten.</p>`,
-          macros: { cal: 360, protein: 26, carb: 42, fat: 10 }
-        },
-        {
-          content: `<ul>
-           <li><input type="checkbox" class="mealTask">
-             <strong>Kokos-Bessen Porridge:</strong> 50 g glutenvrije havermout, 250 ml kokosmelk, 50 g bessen, en een vleugje kaneel.
-           </li>
-         </ul>
-         <p class="note">Tropisch en verrassend lekker.</p>`,
-          macros: { cal: 330, protein: 27, carb: 43, fat: 9 }
-        }
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Havermout met Amandelmelk, Banaan en Kaneel:</strong> 50 g havermout, 250 ml amandelmelk, 1 banaan, een snuf kaneel.</li></ul><p class="note">Een klassiek ontbijt.</p>`, macros: { cal: 350, protein: 28, carb: 45, fat: 8 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Eiwitrijke Smoothie:</strong> 1 schep lactosevrij eiwitpoeder, 250 ml amandelmelk, 1 banaan, spinazie, 50 g bessen, 1 el chiazaad.</li></ul><p class="note">Eenvoudig en voedzaam.</p>`, macros: { cal: 337, protein: 30, carb: 41, fat: 6 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Overnight Oats met Appel:</strong> 50 g havermout, 250 ml amandelmelk, stukjes appel, kaneel.</li></ul><p class="note">Bereid de avond ervoor.</p>`, macros: { cal: 360, protein: 28, carb: 48, fat: 7 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Lactosevrije Yoghurt met Muesli en Fruit:</strong> 150 g lactosevrije yoghurt, 30 g muesli, 50 g fruit.</li></ul><p class="note">Een vertrouwd ontbijt.</p>`, macros: { cal: 340, protein: 30, carb: 42, fat: 7 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Proteïne Pancakes:</strong> Pancakes gemaakt van havermout, banaan en proteïnepoeder, bereid met amandelmelk.</li></ul><p class="note">Een simpel, eiwitrijk ontbijt.</p>`, macros: { cal: 380, protein: 32, carb: 50, fat: 8 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Avocado-Banaan Smoothie:</strong> Blend ½ avocado, 1 banaan, 250 ml amandelmelk.</li></ul><p class="note">Romig en voedzaam.</p>`, macros: { cal: 360, protein: 26, carb: 42, fat: 10 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Eiwitshake met Havermout:</strong> 1 schep eiwitpoeder, 250 ml amandelmelk, 30 g havermout.</li></ul><p class="note">Snel en simpel.</p>`, macros: { cal: 350, protein: 29, carb: 45, fat: 7 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Kaneel Quinoa Porridge:</strong> 50 g quinoa, 250 ml amandelmelk, kaneel en een vleugje honing.</li></ul><p class="note">Een alternatief voor havermout.</p>`, macros: { cal: 360, protein: 28, carb: 50, fat: 9 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Bessen Smoothie Bowl:</strong> Blend bevroren bessen, 250 ml amandelmelk en proteïnepoeder; top met chiazaad.</li></ul><p class="note">Vrolijk en vol antioxidanten.</p>`, macros: { cal: 340, protein: 30, carb: 42, fat: 8 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Tropische Smoothie:</strong> Blend mango, ananas en proteïnepoeder met amandelmelk.</li></ul><p class="note">Verfrissend en fruitig.</p>`, macros: { cal: 320, protein: 28, carb: 40, fat: 7 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Havermout met Amandelpasta en Banaan:</strong> 50 g havermout, 250 ml amandelmelk, 1 banaan, 1 tl amandelpasta.</li></ul><p class="note">Eenvoudig en vol smaak.</p>`, macros: { cal: 370, protein: 26, carb: 48, fat: 10 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Eiwitrijke Overnight Oats:</strong> Havermout met amandelmelk en kaneel, bereid de avond ervoor.</li></ul><p class="note">Gemakkelijk en voedzaam.</p>`, macros: { cal: 350, protein: 28, carb: 47, fat: 8 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Spinazie-Banaan Smoothie:</strong> Blend spinazie, 1 banaan, 250 ml amandelmelk en proteïnepoeder.</li></ul><p class="note">Fris en eenvoudig.</p>`, macros: { cal: 310, protein: 30, carb: 35, fat: 7 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Kokos Havermout:</strong> Havermout met kokosmelk, 50 g bessen en een vleugje kaneel.</li></ul><p class="note">Een tropische twist.</p>`, macros: { cal: 330, protein: 27, carb: 43, fat: 9 } }
       ],
       snack1: [
-        {
-          content: `<ul>
-           <li><input type="checkbox" class="mealTask">
-             150 g lactosevrije Griekse yoghurt, 50 g blauwe bessen, en een handje pecannoten.
-           </li>
-         </ul>
-         <p class="note">Lichte snack met eiwit en gezonde vetten.</p>`,
-          macros: { cal: 160, protein: 23, carb: 14, fat: 1 }
-        },
-        {
-          content: `<ul>
-           <li><input type="checkbox" class="mealTask">
-             <strong>Smoothie Bowl:</strong> Blend ½ banaan, 100 g bevroren bessen, 150 ml amandelmelk; top met amandelen en chiazaad.
-           </li>
-         </ul>
-         <p class="note">Verfrissend met extra vezels en antioxidanten.</p>`,
-          macros: { cal: 180, protein: 20, carb: 20, fat: 4 }
-        },
-        {
-          content: `<ul>
-           <li><input type="checkbox" class="mealTask">
-             <strong>Appel met Amandelboter:</strong> 1 appel in partjes met 1 el amandelboter.
-           </li>
-         </ul>
-         <p class="note">Snel en makkelijk tussendoortje.</p>`,
-          macros: { cal: 150, protein: 3, carb: 25, fat: 6 }
-        },
-        {
-          content: `<ul>
-           <li><input type="checkbox" class="mealTask">
-             <strong>Verse Fruitsalade:</strong> Mix van kiwi, sinaasappel en bessen.
-           </li>
-         </ul>
-         <p class="note">Rijk aan vitamines en verfrissend licht.</p>`,
-          macros: { cal: 120, protein: 2, carb: 28, fat: 1 }
-        },
-        {
-          content: `<ul>
-           <li><input type="checkbox" class="mealTask">
-             <strong>Groene Smoothie:</strong> ½ banaan, een handje spinazie, 100 ml water, en 1 el lijnzaad.
-           </li>
-         </ul>
-         <p class="note">Verkwikkend en vol antioxidanten.</p>`,
-          macros: { cal: 140, protein: 4, carb: 22, fat: 5 }
-        }
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Lactosevrije Yoghurt met Muesli:</strong> 150 g yoghurt, 30 g muesli en 50 g appelstukjes.</li></ul><p class="note">Een frisse, klassieke snack.</p>`, macros: { cal: 160, protein: 23, carb: 14, fat: 1 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Smoothie Bowl:</strong> Blend ½ banaan, 100 g bevroren bessen, 150 ml amandelmelk; top met amandelen.</li></ul><p class="note">Verfrissend en voedzaam.</p>`, macros: { cal: 180, protein: 20, carb: 20, fat: 4 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Appel met Amandelboter:</strong> 1 appel in partjes met 1 el amandelboter.</li></ul><p class="note">Eenvoudig en klassiek tussendoortje.</p>`, macros: { cal: 150, protein: 3, carb: 25, fat: 6 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Verse Fruitsalade:</strong> Mix van appel, peer en druiven.</li></ul><p class="note">Fris en licht.</p>`, macros: { cal: 120, protein: 2, carb: 28, fat: 1 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Groene Smoothie:</strong> ½ banaan, een handje spinazie, 100 ml water en 1 el lijnzaad.</li></ul><p class="note">Verkwikkend en vol antioxidanten.</p>`, macros: { cal: 140, protein: 4, carb: 22, fat: 5 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Cottage Cheese met Ananas:</strong> 150 g lactosevrije cottage cheese met stukjes ananas.</li></ul><p class="note">Een klassieke eiwitrijke snack.</p>`, macros: { cal: 170, protein: 20, carb: 15, fat: 4 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Notenreep:</strong> Zelfgemaakte reep van noten, dadels en proteïnepoeder.</li></ul><p class="note">Handig en energierijk.</p>`, macros: { cal: 200, protein: 15, carb: 25, fat: 8 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Havermout Muffin:</strong> Muffin van havermout, noten en rozijnen.</li></ul><p class="note">Een bekende, makkelijke snack.</p>`, macros: { cal: 180, protein: 8, carb: 30, fat: 6 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Notenmix:</strong> Kleine portie amandelen en walnoten.</li></ul><p class="note">Eenvoudig en vullend.</p>`, macros: { cal: 160, protein: 5, carb: 20, fat: 10 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Rijstwafels met Amandelpasta:</strong> Twee rijstwafels met een dun laagje amandelpasta.</li></ul><p class="note">Licht en knapperig.</p>`, macros: { cal: 170, protein: 6, carb: 30, fat: 6 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Tropische Fruitsalade:</strong> Mix van mango, ananas en kiwi.</li></ul><p class="note">Verfrissend en zoet.</p>`, macros: { cal: 130, protein: 2, carb: 30, fat: 1 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Bessen Smoothie:</strong> Blend van bevroren bessen, water en proteïnepoeder.</li></ul><p class="note">Eenvoudig en eiwitrijk.</p>`, macros: { cal: 150, protein: 20, carb: 15, fat: 2 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Proteïne Chia Pudding:</strong> Kleine portie chia pudding met cacao en amandelmelk.</li></ul><p class="note">Smaakvol en eiwitrijk.</p>`, macros: { cal: 140, protein: 15, carb: 10, fat: 5 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Eiwit Rijstwafel Smoothie:</strong> Blend twee rijstwafels met 1 schep proteïnepoeder en water.</li></ul><p class="note">Licht en verrassend.</p>`, macros: { cal: 160, protein: 18, carb: 22, fat: 3 } }
       ],
       lunch: [
-        {
-          content: `<ul>
-           <li><input type="checkbox" class="mealTask">
-             150 g gegrilde kipfilet, 1 middelgrote zoete aardappel (150 g), 200 g gemengde groenten, 1 el olijfolie, en 1/4 avocado.
-           </li>
-         </ul>
-         <p class="note">Gebalanceerde lunch vol eiwitten en vezels.</p>`,
-          macros: { cal: 485, protein: 36, carb: 50, fat: 15 }
-        },
-        {
-          content: `<ul>
-           <li><input type="checkbox" class="mealTask">
-             <strong>Zalm Salade:</strong> 150 g gegrilde zalm, 100 g quinoa, gemengde bladgroenten, 1/4 avocado, met citroen-olijfoliedressing.
-           </li>
-         </ul>
-         <p class="note">Rijk aan omega-3 en eiwitten.</p>`,
-          macros: { cal: 500, protein: 35, carb: 45, fat: 18 }
-        },
-        {
-          content: `<ul>
-           <li><input type="checkbox" class="mealTask">
-             <strong>Kipsalade:</strong> 150 g gegrilde kipfilet, gemengde groenten (spinazie, paprika, komkommer), en 50 g kikkererwten.
-           </li>
-         </ul>
-         <p class="note">Licht en voedzaam, perfect voor de middag.</p>`,
-          macros: { cal: 460, protein: 34, carb: 40, fat: 14 }
-        },
-        {
-          content: `<ul>
-           <li><input type="checkbox" class="mealTask">
-             <strong>Quinoa Bowl met Kip:</strong> 150 g gegrilde kipfilet, 100 g quinoa, geroosterde groenten (courgette, paprika, wortel) en een handje rucola.
-           </li>
-         </ul>
-         <p class="note">Vol energie en ideaal voor spierherstel.</p>`,
-          macros: { cal: 510, protein: 38, carb: 52, fat: 16 }
-        },
-        {
-          content: `<ul>
-           <li><input type="checkbox" class="mealTask">
-             <strong>Kalkoen Salade:</strong> 150 g gegrilde kalkoenfilet, gemengde groenten, 50 g avocado, met een lichte citroen-olijfoliedressing.
-           </li>
-         </ul>
-         <p class="note">Fris en eiwitrijk, ideaal als lunch.</p>`,
-          macros: { cal: 480, protein: 36, carb: 42, fat: 15 }
-        }
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Gegrilde Kip met Zoete Aardappel en Broccoli:</strong> 150 g kipfilet, 150 g zoete aardappel, 200 g broccoli, 1 el olijfolie.</li></ul><p class="note">Een klassieke lunch.</p>`, macros: { cal: 485, protein: 36, carb: 50, fat: 15 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Zalm Salade met Quinoa:</strong> 150 g zalm, 100 g quinoa, gemengde sla, 1/4 avocado, limoendressing.</li></ul><p class="note">Eenvoudig en voedzaam.</p>`, macros: { cal: 500, protein: 35, carb: 45, fat: 18 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Kipsalade met Groenten en Kikkererwten:</strong> 150 g kipfilet, gemengde groenten, 50 g kikkererwten.</li></ul><p class="note">Een vertrouwde combinatie.</p>`, macros: { cal: 460, protein: 34, carb: 40, fat: 14 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Quinoa Bowl met Kip:</strong> 150 g kipfilet, 100 g quinoa, geroosterde groenten, rucola.</li></ul><p class="note">Licht en verfrissend.</p>`, macros: { cal: 510, protein: 38, carb: 52, fat: 16 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Kalkoen Salade:</strong> 150 g kalkoenfilet, gemengde sla, 50 g avocado, citroen-olijfoliedressing.</li></ul><p class="note">Fris en eenvoudig.</p>`, macros: { cal: 480, protein: 36, carb: 42, fat: 15 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Biefstuk Salade:</strong> 150 g biefstuk, spinazie, tomaat, avocado, balsamico dressing.</li></ul><p class="note">Klassiek en krachtig.</p>`, macros: { cal: 520, protein: 40, carb: 20, fat: 25 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Runderstoofpot met Zoete Aardappel:</strong> 150 g mager rundvlees, gestoofde wortel, sperziebonen, 100 g zoete aardappel.</li></ul><p class="note">Hartverwarmend en voedzaam.</p>`, macros: { cal: 550, protein: 42, carb: 45, fat: 18 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Hamburger Bowl:</strong> 150 g mager rundergehakt, salade, avocado en 100 g bruine rijst (zonder broodje).</li></ul><p class="note">Eenvoudig en smakelijk.</p>`, macros: { cal: 500, protein: 38, carb: 30, fat: 20 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Kip Quinoa Salade:</strong> 150 g kipfilet, 100 g quinoa, gemengde sla met citroen-olijfoliedressing.</li></ul><p class="note">Licht en vullend.</p>`, macros: { cal: 510, protein: 37, carb: 48, fat: 16 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Vis Taco Bowl:</strong> 150 g witvis, sla, maïskorrels, avocado, limoendressing.</li></ul><p class="note">Fris en eiwitrijk.</p>`, macros: { cal: 480, protein: 35, carb: 40, fat: 18 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Gehakt Groente Schotel:</strong> 150 g mager rundvleesgehakt, 1 kop witte rijst, geroerbakte groenten.</li></ul><p class="note">Eenvoudig en traditioneel.</p>`, macros: { cal: 530, protein: 38, carb: 50, fat: 16 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Pittige Kip met Couscous:</strong> 150 g kipfilet, 100 g couscous, geroosterde paprika en courgette.</li></ul><p class="note">Kruidig en vertrouwd.</p>`, macros: { cal: 500, protein: 36, carb: 45, fat: 15 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Geroosterde Kalkoen met Groene Salade:</strong> 150 g kalkoenfilet, gemengde sla, 100 g zoete aardappel.</li></ul><p class="note">Eenvoudig en licht.</p>`, macros: { cal: 490, protein: 35, carb: 42, fat: 16 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Biefstuk met Groenten en Quinoa:</strong> 150 g biefstuk, 100 g quinoa, geroosterde broccoli en wortels, balsamico dressing.</li></ul><p class="note">Krachtig en traditioneel.</p>`, macros: { cal: 540, protein: 42, carb: 40, fat: 20 } }
       ],
       dinner: [
-        {
-          content: `<ul>
-           <li><input type="checkbox" class="mealTask">
-             150 g zalmfilet, 1 kop witte rijst (150-200 g), 200 g groene groenten, bereid met 1 tl olijfolie en citroen.
-           </li>
-         </ul>
-         <p class="note">Licht en rijk aan omega-3 vetzuren.</p>`,
-          macros: { cal: 494, protein: 36, carb: 40, fat: 20 }
-        },
-        {
-          content: `<ul>
-           <li><input type="checkbox" class="mealTask">
-             <strong>Kip & Groenten:</strong> 150 g gegrilde kipfilet, 1 kop bruine rijst, en 200 g gemengde groenten, bereid met 1 el olijfolie.
-           </li>
-         </ul>
-         <p class="note">Solide maaltijd met veel eiwitten en complexe koolhydraten.</p>`,
-          macros: { cal: 520, protein: 38, carb: 42, fat: 22 }
-        },
-        {
-          content: `<ul>
-           <li><input type="checkbox" class="mealTask">
-             <strong>Runderroerbak:</strong> 150 g mager rundvlees, 200 g groenten (paprika, courgette, champignons), geroerbakt met knoflook en kruiden, geserveerd met 1 kop quinoa.
-           </li>
-         </ul>
-         <p class="note">Krachtig en vol vezels voor spieropbouw.</p>`,
-          macros: { cal: 530, protein: 40, carb: 45, fat: 20 }
-        },
-        {
-          content: `<ul>
-           <li><input type="checkbox" class="mealTask">
-             <strong>Geroosterde Kalkoenfilet:</strong> 150 g kalkoenfilet, 1 kop zoete aardappel, en 200 g gestoomde broccoli.
-           </li>
-         </ul>
-         <p class="note">Licht, eiwitrijk en vol smaak.</p>`,
-          macros: { cal: 500, protein: 36, carb: 40, fat: 18 }
-        },
-        {
-          content: `<ul>
-           <li><input type="checkbox" class="mealTask">
-             <strong>Gegrilde Zalm met Quinoa:</strong> 150 g gegrilde zalm, 100 g quinoa, en een mix van spinazie en cherrytomaatjes.
-           </li>
-         </ul>
-         <p class="note">Rijk aan omega-3 en eiwitten, perfect voor herstel.</p>`,
-          macros: { cal: 510, protein: 37, carb: 42, fat: 19 }
-        }
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Zalm met Witte Rijst en Groene Groenten:</strong> 150 g zalmfilet, 1 kop witte rijst, 200 g groene groenten, 1 tl olijfolie.</li></ul><p class="note">Klassiek en gezond.</p>`, macros: { cal: 494, protein: 36, carb: 40, fat: 20 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Kip met Bruine Rijst en Groenten:</strong> 150 g kipfilet, 1 kop bruine rijst, 200 g gemengde groenten, 1 el olijfolie.</li></ul><p class="note">Een vertrouwde keuze.</p>`, macros: { cal: 520, protein: 38, carb: 42, fat: 22 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Runderroerbak met Quinoa:</strong> 150 g mager rundvlees, 200 g groenten, 1 kop quinoa.</li></ul><p class="note">Eenvoudig en voedzaam.</p>`, macros: { cal: 530, protein: 40, carb: 45, fat: 20 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Geroosterde Kalkoen met Zoete Aardappel:</strong> 150 g kalkoenfilet, 1 kop zoete aardappel, 200 g broccoli.</li></ul><p class="note">Licht en traditioneel.</p>`, macros: { cal: 500, protein: 36, carb: 40, fat: 18 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Gegrilde Zalm met Quinoa en Spinazie:</strong> 150 g zalm, 100 g quinoa, verse spinazie en cherrytomaatjes.</li></ul><p class="note">Vertrouwd en voedzaam.</p>`, macros: { cal: 510, protein: 37, carb: 42, fat: 19 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Biefstuk met Zoete Aardappel en Groenten:</strong> 150 g biefstuk, 150 g zoete aardappel, 200 g groene groenten.</li></ul><p class="note">Een stevige maaltijd.</p>`, macros: { cal: 530, protein: 42, carb: 45, fat: 18 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Hamburger Dinner Bowl:</strong> 150 g mager rundergehakt, salade, avocado, 100 g bruine rijst.</li></ul><p class="note">Eenvoudig en smakelijk.</p>`, macros: { cal: 520, protein: 40, carb: 42, fat: 20 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Gehakt Rijstschotel:</strong> 150 g mager rundvleesgehakt, 1 kop witte rijst, geroerbakte groenten.</li></ul><p class="note">Traditioneel en voedzaam.</p>`, macros: { cal: 540, protein: 38, carb: 50, fat: 18 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Kip Curry met Zoete Aardappel:</strong> 150 g kipfilet in lichte kokos-curry, 150 g zoete aardappel, broccoli.</li></ul><p class="note">Kruidig en geruststellend.</p>`, macros: { cal: 550, protein: 36, carb: 50, fat: 20 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Vis Stoofpot met Quinoa:</strong> 150 g witvis, gestoofde groenten, 100 g quinoa.</li></ul><p class="note">Licht en makkelijk verteerbaar.</p>`, macros: { cal: 510, protein: 35, carb: 45, fat: 16 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Kalkoen met Gebakken Pompoen:</strong> 150 g kalkoenfilet, 150 g gebakken pompoen, gestoomde spinazie.</li></ul><p class="note">Eenvoudig en smaakvol.</p>`, macros: { cal: 500, protein: 38, carb: 40, fat: 15 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Runderbiefstuk met Groenten en Bruine Rijst:</strong> 150 g biefstuk, 100 g bruine rijst, gegrilde courgette, paprika.</li></ul><p class="note">Een klassieke maaltijd.</p>`, macros: { cal: 560, protein: 42, carb: 48, fat: 20 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Zalm en Avocado Bowl:</strong> 150 g zalm, 100 g bruine rijst, 1/4 avocado, gemengde groenten.</li></ul><p class="note">Romig en gezond.</p>`, macros: { cal: 530, protein: 38, carb: 42, fat: 22 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Cheat Dinner: Gegrilde Burger met Zoete Frieten:</strong> 150 g mager runderburger, 150 g ovengebakken zoete frieten, kleine salade.</li></ul><p class="note">Voor een cheat maaltijd, hoger in calorieën.</p>`, macros: { cal: 600, protein: 40, carb: 50, fat: 22 } }
       ],
       snack2: [
-        {
-          content: `<ul>
-           <li><input type="checkbox" class="mealTask">
-             1 schep lactosevrij eiwitpoeder shaken met water of amandelmelk, en 1 kleine banaan of 1 dadel.
-           </li>
-         </ul>
-         <p class="note">Ideaal als post-workout snack.</p>`,
-          macros: { cal: 140, protein: 23, carb: 3, fat: 4 }
-        },
-        {
-          content: `<ul>
-           <li><input type="checkbox" class="mealTask">
-             <strong>Eiwit Smoothie:</strong> 1 schep lactosevrij eiwitpoeder, 200 ml water, ½ banaan, en enkele bevroren bessen.
-           </li>
-         </ul>
-         <p class="note">Snel en eenvoudig voor een directe eiwitboost.</p>`,
-          macros: { cal: 150, protein: 24, carb: 4, fat: 4 }
-        },
-        {
-          content: `<ul>
-           <li><input type="checkbox" class="mealTask">
-             <strong>Kokos-Mango Shake:</strong> 1 schep lactosevrij eiwitpoeder, 200 ml kokoswater, ½ mango, en enkele ijsblokjes.
-           </li>
-         </ul>
-         <p class="note">Tropisch en verfrissend.</p>`,
-          macros: { cal: 160, protein: 22, carb: 8, fat: 4 }
-        },
-        {
-          content: `<ul>
-           <li><input type="checkbox" class="mealTask">
-             <strong>Groene Smoothie:</strong> 1 schep eiwitpoeder, een handje spinazie, ½ banaan, en 150 ml water.
-           </li>
-         </ul>
-         <p class="note">Verkwikkend en vol antioxidanten.</p>`,
-          macros: { cal: 145, protein: 23, carb: 5, fat: 4 }
-        },
-        {
-          content: `<ul>
-           <li><input type="checkbox" class="mealTask">
-             <strong>Proteïne Havermout Bowl:</strong> 30 g havermout, 1 schep eiwitpoeder, 150 ml amandelmelk, en een snufje kaneel.
-           </li>
-         </ul>
-         <p class="note">Warm, licht verteerbaar en voedzaam.</p>`,
-          macros: { cal: 155, protein: 24, carb: 6, fat: 5 }
-        }
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Eiwitshake:</strong> 1 schep lactosevrij eiwitpoeder, 250 ml water of amandelmelk, 1 kleine banaan.</li></ul><p class="note">Een simpele, klassieke optie.</p>`, macros: { cal: 140, protein: 23, carb: 3, fat: 4 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Eiwit Smoothie:</strong> 1 schep proteïnepoeder, 200 ml water, ½ banaan, bevroren bessen.</li></ul><p class="note">Snel en effectief.</p>`, macros: { cal: 150, protein: 24, carb: 4, fat: 4 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Kokos-Mango Shake:</strong> 1 schep proteïnepoeder, 200 ml kokoswater, ½ mango, ijsblokjes.</li></ul><p class="note">Fris en tropisch.</p>`, macros: { cal: 160, protein: 22, carb: 8, fat: 4 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Groene Smoothie:</strong> 1 schep proteïnepoeder, een handje spinazie, ½ banaan, 150 ml water.</li></ul><p class="note">Verkwikkend en voedzaam.</p>`, macros: { cal: 145, protein: 23, carb: 5, fat: 4 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Proteïne Havermout Bowl:</strong> 30 g havermout, 1 schep proteïnepoeder, 150 ml amandelmelk, kaneel.</li></ul><p class="note">Warm en traditioneel.</p>`, macros: { cal: 155, protein: 24, carb: 6, fat: 5 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Fruit & Noten Mix:</strong> Een halve banaan met een kleine hand noten.</li></ul><p class="note">Eenvoudig tussendoortje.</p>`, macros: { cal: 150, protein: 3, carb: 25, fat: 7 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Rijstwafels met Notenpasta:</strong> Twee rijstwafels met een dun laagje notenpasta.</li></ul><p class="note">Licht en knapperig.</p>`, macros: { cal: 170, protein: 6, carb: 30, fat: 6 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Tropische Fruitsalade:</strong> Mix van mango, ananas en kiwi.</li></ul><p class="note">Zoet en verfrissend.</p>`, macros: { cal: 130, protein: 2, carb: 30, fat: 1 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Bessen Smoothie:</strong> Blend van bevroren bessen, water en proteïnepoeder.</li></ul><p class="note">Een klassieke optie.</p>`, macros: { cal: 150, protein: 20, carb: 15, fat: 2 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Avocado Eiwit Shake:</strong> ¼ avocado, 1 banaan, 1 schep proteïnepoeder, 200 ml water.</li></ul><p class="note">Romig en vullend.</p>`, macros: { cal: 160, protein: 21, carb: 18, fat: 8 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Cacao Eiwit Shake:</strong> 1 schep proteïnepoeder, 200 ml water, 1 tl cacaopoeder, ½ banaan.</li></ul><p class="note">Voor de chocoladeliefhebber.</p>`, macros: { cal: 150, protein: 22, carb: 16, fat: 3 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Cheat Snack: Chocolade Bar:</strong> Een stuk pure chocolade (minimaal 70% cacao) met noten.</li></ul><p class="note">Een lekkere traktatie.</p>`, macros: { cal: 250, protein: 4, carb: 30, fat: 12 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Cheat Snack: IJsje:</strong> Een portie laag-vet ijs, gemaakt van bevroren fruit en water.</li></ul><p class="note">Af en toe een zoete verwennerij.</p>`, macros: { cal: 220, protein: 3, carb: 35, fat: 8 } },
+        { content: `<ul><li><input type="checkbox" class="mealTask"><strong>Proteïne Rijstwafel Smoothie:</strong> Blend twee rijstwafels met 1 schep proteïnepoeder en water.</li></ul><p class="note">Licht en verrassend.</p>`, macros: { cal: 160, protein: 18, carb: 22, fat: 3 } }
       ]
     };
 
-    // Wissel de inhoud van een specifieke maaltijdsectie en voeg macro-info toe
+    // Wissel de inhoud van een specifieke maaltijdsectie en voeg de macro-info toe
     function swapMeal(mealType) {
       let container = null;
-      if (mealType === 'breakfast') {
-        container = document.getElementById('breakfastContent');
-      } else if (mealType === 'snack1') {
-        container = document.getElementById('snack1Content');
-      } else if (mealType === 'lunch') {
-        container = document.getElementById('lunchContent');
-      } else if (mealType === 'dinner') {
-        container = document.getElementById('dinnerContent');
-      } else if (mealType === 'snack2') {
-        container = document.getElementById('snack2Content');
-      }
-      if (!container) {
-        console.error(`Container niet gevonden voor: ${mealType}`);
-        return;
-      }
+      if (mealType === 'breakfast') container = document.getElementById('breakfastContent');
+      else if (mealType === 'snack1') container = document.getElementById('snack1Content');
+      else if (mealType === 'lunch') container = document.getElementById('lunchContent');
+      else if (mealType === 'dinner') container = document.getElementById('dinnerContent');
+      else if (mealType === 'snack2') container = document.getElementById('snack2Content');
+      if (!container) return;
       const options = recipes[mealType];
       if (!options || options.length === 0) return;
       const randomIndex = Math.floor(Math.random() * options.length);
       const recipe = options[randomIndex];
       container.innerHTML = recipe.content + `<div class="macro-info" style="display:none;" data-cal="${recipe.macros.cal}" data-protein="${recipe.macros.protein}" data-carb="${recipe.macros.carb}" data-fat="${recipe.macros.fat}"></div>`;
-      // Voeg event listeners toe aan de nieuwe checkboxes
+      // Voeg event listeners toe aan nieuwe checkboxes
       const newCheckboxes = container.querySelectorAll('input[type="checkbox"]');
       newCheckboxes.forEach(cb => {
-        cb.addEventListener('change', () => {
-          updateProgress();
-          updateDailyTotals();
-        });
+        cb.addEventListener('change', () => { updateProgress(); updateDailyTotals(); });
       });
       updateProgress();
       updateDailyTotals();
@@ -543,33 +426,27 @@
 
     // Functie om alle details in- of uit te klappen
     function toggleDetails(expand) {
-      const details = document.querySelectorAll("details");
-      details.forEach(detail => {
-        detail.open = expand;
-      });
+      document.querySelectorAll("details").forEach(detail => { detail.open = expand; });
     }
 
     // Reset alle checkboxes
     function resetCheckboxes() {
-      const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
-      allCheckboxes.forEach(cb => cb.checked = false);
+      document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
       updateProgress();
     }
 
-    // Update de voortgangs-indicatoren voor checkboxes
+    // Update de voortgangs-indicatoren voor checklists
     function updateProgress() {
-      // Maaltijden
       const mealCheckboxes = document.querySelectorAll('input.mealTask');
       const mealChecked = document.querySelectorAll('input.mealTask:checked');
       document.getElementById('progressMeals').innerText = `Maaltijden: ${mealChecked.length} van ${mealCheckboxes.length} items voltooid`;
       
-      // Supplementen
       const supplementCheckboxes = document.querySelectorAll('input.supplementTask');
       const supplementChecked = document.querySelectorAll('input.supplementTask:checked');
       document.getElementById('progressSupplements').innerText = `Supplementen: ${supplementChecked.length} van ${supplementCheckboxes.length} items voltooid`;
     }
 
-    // Update de dagelijkse totale macro's door de macro-info in elke maaltijdsectie te lezen
+    // Update de dagelijkse totalen door de macro-info uit elke maaltijdsectie op te tellen
     function updateDailyTotals() {
       const mealIds = ['breakfastContent', 'snack1Content', 'lunchContent', 'dinnerContent', 'snack2Content'];
       let totalCal = 0, totalProtein = 0, totalCarb = 0, totalFat = 0;
@@ -588,14 +465,10 @@
       document.getElementById('dailyTotals').innerHTML = `<strong>Dagelijkse Totalen:</strong> Calorieën: ${totalCal} kcal, Eiwitten: ${totalProtein} g, Koolhydraten: ${totalCarb} g, Vetten: ${totalFat} g`;
     }
 
-    // Voeg event listeners toe aan alle bestaande checkboxes bij DOM-load
+    // Voeg event listeners toe aan alle checkboxes bij DOM-load
     document.addEventListener("DOMContentLoaded", function() {
-      const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
-      allCheckboxes.forEach(cb => {
-        cb.addEventListener('change', () => {
-          updateProgress();
-          updateDailyTotals();
-        });
+      document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+        cb.addEventListener('change', () => { updateProgress(); updateDailyTotals(); });
       });
       updateProgress();
       updateDailyTotals();
