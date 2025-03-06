@@ -136,7 +136,7 @@
       <strong>Doel:</strong> Vetverlies voor een strakker lichaam met behoud van spiermassa.
       <br><strong>Training:</strong> dagelijks om 21:00 uur.
     </p>
-    <p><em>Tik op een maaltijd/snack om details te bekijken en vink de box aan als je deze hebt uitgevoerd.</em></p>
+    <p><em>Tik op een maaltijd/snack om details te bekijken, vink de box aan als je deze hebt uitgevoerd, en wissel maaltijden voor variatie.</em></p>
 
     <!-- Twee voortgangs-indicatoren -->
     <div class="progress-container">
@@ -148,68 +148,81 @@
       <button onclick="toggleDetails(true)">Alles uitklappen</button>
       <button onclick="toggleDetails(false)">Alles inklappen</button>
       <button onclick="resetCheckboxes()">Reset checklist</button>
+      <button onclick="swapAllMeals()">Wissel Alles</button>
     </div>
 
     <!-- Maaltijdsectie -->
     <div id="mealsContainer">
+      <!-- Ontbijt -->
       <details>
-        <summary>Ontbijt (±08:00) – Eiwitrijke smoothie</summary>
-        <div class="meal-content">
+        <summary>Ontbijt (±08:00)</summary>
+        <div class="meal-content" id="breakfastContent">
           <ul>
             <li>
               <input type="checkbox" class="mealTask">
-              <strong>Smoothie</strong> met 1 schep lactosevrij eiwitpoeder, 250 ml amandelmelk, 1 banaan, een handje spinazie, 50 g bessen en 1 el chiazaad.
+              <strong>Eiwitrijke smoothie:</strong> 1 schep lactosevrij eiwitpoeder, 250 ml amandelmelk, 1 banaan, een handje spinazie, 50 g bessen, 1 el chiazaad.
             </li>
           </ul>
-          <p class="note">Voedzaam ontbijt, rijk aan eiwit en koolhydraten voor energie. Vrij van lactose, ei en ui.</p>
+          <p class="note">Voedzaam en energiek ontbijt.</p>
+        </div>
+        <div class="button-container">
+          <button onclick="swapMeal('breakfast')">Wissel Ontbijt</button>
         </div>
       </details>
 
+      <!-- Snack 1 -->
       <details>
-        <summary>Snack 1 (±11:00) – Yoghurt, fruit en noten</summary>
-        <div class="meal-content">
+        <summary>Snack 1 (±11:00)</summary>
+        <div class="meal-content" id="snack1Content">
           <ul>
-            <li><input type="checkbox" class="mealTask">150 g lactosevrije Griekse yoghurt</li>
-            <li><input type="checkbox" class="mealTask">50 g blauwe bessen (of ander fruit naar keuze)</li>
-            <li><input type="checkbox" class="mealTask">Een handje pecannoten (of andere ongezouten noten)</li>
+            <li><input type="checkbox" class="mealTask">150 g lactosevrije Griekse yoghurt, 50 g blauwe bessen, en een handje pecannoten.</li>
           </ul>
-          <p class="note">Bevat circa 10 g eiwit plus gezonde vetten en antioxidanten. Houdt je energiek tot de lunch.</p>
+          <p class="note">Lichte snack met eiwit en gezonde vetten.</p>
+        </div>
+        <div class="button-container">
+          <button onclick="swapMeal('snack1')">Wissel Snack 1</button>
         </div>
       </details>
 
+      <!-- Lunch -->
       <details>
-        <summary>Lunch (±13:00) – Gegrilde kip, zoete aardappel &amp; groenten</summary>
-        <div class="meal-content">
+        <summary>Lunch (±13:00)</summary>
+        <div class="meal-content" id="lunchContent">
           <ul>
-            <li><input type="checkbox" class="mealTask">150 g gegrilde kipfilet (gekruid met peper en kruiden naar smaak)</li>
-            <li><input type="checkbox" class="mealTask">1 middelgrote zoete aardappel (ongeveer 150 g, geroosterd of gestoomd)</li>
-            <li><input type="checkbox" class="mealTask">Ongeveer 200 g groenten (bijv. broccoli, wortel, courgette) – gekookt of gestoomd</li>
-            <li><input type="checkbox" class="mealTask">1 el olijfolie en 1/4 avocado (voor gezonde vetten)</li>
+            <li><input type="checkbox" class="mealTask">150 g gegrilde kipfilet, 1 middelgrote zoete aardappel (150 g), 200 g gemengde groenten, 1 el olijfolie, en 1/4 avocado.</li>
           </ul>
-          <p class="note">Hoge eiwitlunch met vezels, vitaminen (A, C) en kalium. Geeft langdurige verzadiging en energie.</p>
+          <p class="note">Gebalanceerde lunch met veel eiwitten en vezels.</p>
+        </div>
+        <div class="button-container">
+          <button onclick="swapMeal('lunch')">Wissel Lunch</button>
         </div>
       </details>
 
+      <!-- Diner -->
       <details>
-        <summary>Diner (±18:30) – Zalm, rijst &amp; groene groenten (2–3u voor training)</summary>
-        <div class="meal-content">
+        <summary>Diner (±18:30)</summary>
+        <div class="meal-content" id="dinnerContent">
           <ul>
-            <li><input type="checkbox" class="mealTask">150 g zalmfilet (gebakken of uit de oven, gekruid met citroen en peper)</li>
-            <li><input type="checkbox" class="mealTask">1 kop gekookte witte rijst (ongeveer 150–200 g bereid gewicht)</li>
-            <li><input type="checkbox" class="mealTask">Ongeveer 200 g groene groenten (bijv. broccoli, spinazie) – gestoofd of gewokt in 1 tl olijfolie</li>
+            <li><input type="checkbox" class="mealTask">150 g zalmfilet, 1 kop witte rijst (150-200 g), 200 g groene groenten, bereid met 1 tl olijfolie en citroen.</li>
           </ul>
-          <p class="note">Licht verteerbaar pre-workout diner met veel eiwit en koolhydraten voor energie. Omega-3 uit zalm ondersteunt herstel.</p>
+          <p class="note">Licht maar voedzaam, rijk aan omega-3.</p>
+        </div>
+        <div class="button-container">
+          <button onclick="swapMeal('dinner')">Wissel Diner</button>
         </div>
       </details>
 
+      <!-- Snack 2 -->
       <details>
-        <summary>Snack 2 (±22:00 na training) – Herstelshake</summary>
-        <div class="meal-content">
+        <summary>Snack 2 (±22:00)</summary>
+        <div class="meal-content" id="snack2Content">
           <ul>
-            <li><input type="checkbox" class="mealTask">1 schep lactosevrij eiwitpoeder (20–25 g eiwit) shaken met water of amandelmelk</li>
-            <li><input type="checkbox" class="mealTask">1 kleine banaan of 1 dadel (voor snelle koolhydraten en kalium)</li>
+            <li><input type="checkbox" class="mealTask">1 schep lactosevrij eiwitpoeder shaken met water of amandelmelk, en 1 kleine banaan of 1 dadel.</li>
           </ul>
-          <p class="note">Post-workout snack voor spierreparatie en aanvulling van glycogeen. Licht en snel opneembaar.</p>
+          <p class="note">Ideaal als post-workout snack.</p>
+        </div>
+        <div class="button-container">
+          <button onclick="swapMeal('snack2')">Wissel Snack 2</button>
         </div>
       </details>
     </div>
@@ -219,37 +232,218 @@
     <div id="supplementsContainer">
       <h1 style="font-size:1.8em; text-align:center;">Supplementen</h1>
       <ul>
-        <li>
-          <input type="checkbox" class="supplementTask">
-          <strong>Creatine (3–5 g/dag):</strong> Verbetert kracht en spierbehoud, zeer effectief en veilig voor vrouwen.
-        </li>
-        <li>
-          <input type="checkbox" class="supplementTask">
-          <strong>Vitamine D3 (1000–2000 IU):</strong> Veel vrouwen hebben een tekort; ondersteunt botten, spieren en het immuunsysteem.
-        </li>
-        <li>
-          <input type="checkbox" class="supplementTask">
-          <strong>Calcium (~1000 mg/dag):</strong> Belangrijk bij een lactosevrij dieet; via voeding (groene groenten, verrijkte melk) of supplement.
-        </li>
-        <li>
-          <input type="checkbox" class="supplementTask">
-          <strong>IJzer (bij verhoogd risico):</strong> Ter preventie van ijzertekort door menstruatie; laat waarden checken en overleg voor suppletie.
-        </li>
-        <li>
-          <input type="checkbox" class="supplementTask">
-          <strong>Omega-3 (visolie):</strong> 1000 mg EPA/DHA indien minder dan 2x per week vette vis; ondersteunt hart en ontstekingsremming.
-        </li>
-        <li>
-          <input type="checkbox" class="supplementTask">
-          <strong>Magnesium (200–400 mg):</strong> Voor spierontspanning en herstel; bij voorkeur 's avonds innemen voor betere slaap.
-        </li>
+        <li><input type="checkbox" class="supplementTask"><strong>Creatine (3–5 g/dag):</strong> Verbetert kracht en spierbehoud, veilig voor vrouwen.</li>
+        <li><input type="checkbox" class="supplementTask"><strong>Vitamine D3 (1000–2000 IU):</strong> Ondersteunt botten, spieren en immuunsysteem.</li>
+        <li><input type="checkbox" class="supplementTask"><strong>Calcium (~1000 mg/dag):</strong> Belangrijk bij een lactosevrij dieet.</li>
+        <li><input type="checkbox" class="supplementTask"><strong>IJzer (bij risico):</strong> Voorkomt tekorten, vooral bij menstruatie.</li>
+        <li><input type="checkbox" class="supplementTask"><strong>Omega-3 (visolie):</strong> 1000 mg EPA/DHA voor hart en ontstekingsremming.</li>
+        <li><input type="checkbox" class="supplementTask"><strong>Magnesium (200–400 mg):</strong> Voor spierontspanning en herstel, bij voorkeur 's avonds.</li>
       </ul>
-      <p class="note" style="text-align:center;">*Naast supplementen is gevarieerde voeding essentieel. Zorg voor voldoende groenten, fruit, noten en water voor optimale voeding.*</p>
+      <p class="note" style="text-align:center;">*Gevarieerde voeding blijft essentieel voor optimale resultaten.*</p>
     </div>
   </div>
 
   <script>
-    // Functie om alle details uit/inklappen
+    // Receptenobject met vijf varianten per maaltijd
+    const recipes = {
+      breakfast: [
+        `<ul>
+           <li><input type="checkbox" class="mealTask">
+             <strong>Eiwitrijke smoothie:</strong> 1 schep lactosevrij eiwitpoeder, 250 ml amandelmelk, 1 banaan, een handje spinazie, 50 g bessen, 1 el chiazaad.
+           </li>
+         </ul>
+         <p class="note">Voedzaam en energiek ontbijt.</p>`,
+        `<ul>
+           <li><input type="checkbox" class="mealTask">
+             <strong>Chia Pudding:</strong> 250 ml amandelmelk, 3 el chiazaad, 1 tl vanille, getopt met 50 g gemengde bessen en een handje walnoten.
+           </li>
+         </ul>
+         <p class="note">Stevig ontbijt vol gezonde vetten en vezels.</p>`,
+        `<ul>
+           <li><input type="checkbox" class="mealTask">
+             <strong>Overnight Oats:</strong> 50 g havermout, 250 ml amandelmelk, 1 el chiazaad, 50 g blauwe bessen, een snufje kaneel.
+           </li>
+         </ul>
+         <p class="note">Gemakkelijk en voedzaam, rijk aan vezels.</p>`,
+        `<ul>
+           <li><input type="checkbox" class="mealTask">
+             <strong>Avocado-Banaan Smoothie Bowl:</strong> Blend ½ avocado, 1 banaan, 200 ml amandelmelk; top met noten en 1 el chiazaad.
+           </li>
+         </ul>
+         <p class="note">Romig en vol gezonde vetten.</p>`,
+        `<ul>
+           <li><input type="checkbox" class="mealTask">
+             <strong>Kokos-Bessen Porridge:</strong> 50 g glutenvrije havermout, 250 ml kokosmelk, 50 g bessen, en een vleugje kaneel.
+           </li>
+         </ul>
+         <p class="note">Tropisch en verrassend lekker.</p>`
+      ],
+      snack1: [
+        `<ul>
+           <li><input type="checkbox" class="mealTask">
+             150 g lactosevrije Griekse yoghurt, 50 g blauwe bessen, en een handje pecannoten.
+           </li>
+         </ul>
+         <p class="note">Lichte snack met eiwit en gezonde vetten.</p>`,
+        `<ul>
+           <li><input type="checkbox" class="mealTask">
+             <strong>Smoothie Bowl:</strong> Blend ½ banaan, 100 g bevroren bessen, 150 ml amandelmelk; top met amandelen en chiazaad.
+           </li>
+         </ul>
+         <p class="note">Verfrissend met extra vezels en antioxidanten.</p>`,
+        `<ul>
+           <li><input type="checkbox" class="mealTask">
+             <strong>Appel met Amandelboter:</strong> 1 appel in partjes met 1 el amandelboter.
+           </li>
+         </ul>
+         <p class="note">Snel en makkelijk tussendoortje.</p>`,
+        `<ul>
+           <li><input type="checkbox" class="mealTask">
+             <strong>Verse Fruitsalade:</strong> Mix van kiwi, sinaasappel en bessen.
+           </li>
+         </ul>
+         <p class="note">Rijk aan vitamines en verfrissend licht.</p>`,
+        `<ul>
+           <li><input type="checkbox" class="mealTask">
+             <strong>Groene Smoothie:</strong> ½ banaan, een handje spinazie, 100 ml water, en 1 el lijnzaad.
+           </li>
+         </ul>
+         <p class="note">Verkwikkend en vol antioxidanten.</p>`
+      ],
+      lunch: [
+        `<ul>
+           <li><input type="checkbox" class="mealTask">
+             150 g gegrilde kipfilet, 1 middelgrote zoete aardappel (150 g), 200 g gemengde groenten, 1 el olijfolie, en 1/4 avocado.
+           </li>
+         </ul>
+         <p class="note">Gebalanceerde lunch vol eiwitten en vezels.</p>`,
+        `<ul>
+           <li><input type="checkbox" class="mealTask">
+             <strong>Zalm Salade:</strong> 150 g gegrilde zalm, 100 g quinoa, gemengde bladgroenten, 1/4 avocado, met citroen-olijfoliedressing.
+           </li>
+         </ul>
+         <p class="note">Rijk aan omega-3 en eiwitten.</p>`,
+        `<ul>
+           <li><input type="checkbox" class="mealTask">
+             <strong>Kipsalade:</strong> 150 g gegrilde kipfilet, gemengde groenten (spinazie, paprika, komkommer), en 50 g kikkererwten.
+           </li>
+         </ul>
+         <p class="note">Licht en voedzaam, perfect voor de middag.</p>`,
+        `<ul>
+           <li><input type="checkbox" class="mealTask">
+             <strong>Quinoa Bowl met Kip:</strong> 150 g gegrilde kipfilet, 100 g quinoa, geroosterde groenten (courgette, paprika, wortel) en een handje rucola.
+           </li>
+         </ul>
+         <p class="note">Vol energie en ideaal voor spierherstel.</p>`,
+        `<ul>
+           <li><input type="checkbox" class="mealTask">
+             <strong>Kalkoen Salade:</strong> 150 g gegrilde kalkoenfilet, gemengde groenten, 50 g avocado, met een lichte citroen-olijfoliedressing.
+           </li>
+         </ul>
+         <p class="note">Fris en eiwitrijk, ideaal als lunch.</p>`
+      ],
+      dinner: [
+        `<ul>
+           <li><input type="checkbox" class="mealTask">
+             150 g zalmfilet, 1 kop witte rijst (150-200 g), 200 g groene groenten, bereid met 1 tl olijfolie en citroen.
+           </li>
+         </ul>
+         <p class="note">Licht en rijk aan omega-3 vetzuren.</p>`,
+        `<ul>
+           <li><input type="checkbox" class="mealTask">
+             <strong>Kip & Groenten:</strong> 150 g gegrilde kipfilet, 1 kop bruine rijst, en 200 g gemengde groenten, bereid met 1 el olijfolie.
+           </li>
+         </ul>
+         <p class="note">Solide maaltijd met veel eiwitten en complexe koolhydraten.</p>`,
+        `<ul>
+           <li><input type="checkbox" class="mealTask">
+             <strong>Runderroerbak:</strong> 150 g mager rundvlees, 200 g groenten (paprika, courgette, champignons), geroerbakt met knoflook en kruiden, geserveerd met 1 kop quinoa.
+           </li>
+         </ul>
+         <p class="note">Krachtig en vol vezels voor spieropbouw.</p>`,
+        `<ul>
+           <li><input type="checkbox" class="mealTask">
+             <strong>Geroosterde Kalkoenfilet:</strong> 150 g kalkoenfilet, 1 kop zoete aardappel, en 200 g gestoomde broccoli.
+           </li>
+         </ul>
+         <p class="note">Licht, eiwitrijk en vol smaak.</p>`,
+        `<ul>
+           <li><input type="checkbox" class="mealTask">
+             <strong>Gegrilde Zalm met Quinoa:</strong> 150 g gegrilde zalm, 100 g quinoa, en een mix van spinazie en cherrytomaatjes.
+           </li>
+         </ul>
+         <p class="note">Rijk aan omega-3 en eiwitten, perfect voor herstel.</p>`
+      ],
+      snack2: [
+        `<ul>
+           <li><input type="checkbox" class="mealTask">
+             1 schep lactosevrij eiwitpoeder shaken met water of amandelmelk, en 1 kleine banaan of 1 dadel.
+           </li>
+         </ul>
+         <p class="note">Ideaal als post-workout snack.</p>`,
+        `<ul>
+           <li><input type="checkbox" class="mealTask">
+             <strong>Eiwit Smoothie:</strong> 1 schep lactosevrij eiwitpoeder, 200 ml water, ½ banaan, en enkele bevroren bessen.
+           </li>
+         </ul>
+         <p class="note">Snel en eenvoudig voor een directe eiwitboost.</p>`,
+        `<ul>
+           <li><input type="checkbox" class="mealTask">
+             <strong>Kokos-Mango Shake:</strong> 1 schep lactosevrij eiwitpoeder, 200 ml kokoswater, ½ mango, en enkele ijsblokjes.
+           </li>
+         </ul>
+         <p class="note">Tropisch en verfrissend.</p>`,
+        `<ul>
+           <li><input type="checkbox" class="mealTask">
+             <strong>Groene Smoothie:</strong> 1 schep eiwitpoeder, een handje spinazie, ½ banaan, en 150 ml water.
+           </li>
+         </ul>
+         <p class="note">Verkwikkend en vol antioxidanten.</p>`,
+        `<ul>
+           <li><input type="checkbox" class="mealTask">
+             <strong>Proteïne Havermout Bowl:</strong> 30 g havermout, 1 schep eiwitpoeder, 150 ml amandelmelk, en een snufje kaneel.
+           </li>
+         </ul>
+         <p class="note">Warm, licht verteerbaar en voedzaam.</p>`
+      ]
+    };
+
+    // Wissel de inhoud van een specifieke maaltijdsectie
+    function swapMeal(mealType) {
+      let container = null;
+      if (mealType === 'breakfast') {
+        container = document.getElementById('breakfastContent');
+      } else if (mealType === 'snack1') {
+        container = document.getElementById('snack1Content');
+      } else if (mealType === 'lunch') {
+        container = document.getElementById('lunchContent');
+      } else if (mealType === 'dinner') {
+        container = document.getElementById('dinnerContent');
+      } else if (mealType === 'snack2') {
+        container = document.getElementById('snack2Content');
+      }
+      if (!container) {
+        console.error(`Container niet gevonden voor: ${mealType}`);
+        return;
+      }
+      const options = recipes[mealType];
+      if (!options || options.length === 0) return;
+      const randomIndex = Math.floor(Math.random() * options.length);
+      container.innerHTML = options[randomIndex];
+      // Voeg event listeners toe aan de nieuwe checkboxes
+      const newCheckboxes = container.querySelectorAll('input[type="checkbox"]');
+      newCheckboxes.forEach(cb => {
+        cb.addEventListener('change', updateProgress);
+      });
+      updateProgress();
+    }
+
+    // Wissel alle maaltijdopties tegelijk via de "Wissel Alles" knop
+    function swapAllMeals() {
+      ['breakfast', 'snack1', 'lunch', 'dinner', 'snack2'].forEach(type => swapMeal(type));
+    }
+
+    // Functie om alle details in- of uit te klappen
     function toggleDetails(expand) {
       const details = document.querySelectorAll("details");
       details.forEach(detail => {
@@ -257,14 +451,14 @@
       });
     }
 
-    // Functie om alle checkboxes te resetten
+    // Reset alle checkboxes
     function resetCheckboxes() {
       const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
       allCheckboxes.forEach(cb => cb.checked = false);
       updateProgress();
     }
 
-    // Functie om de voortgang voor beide secties te updaten
+    // Update de voortgangs-indicatoren
     function updateProgress() {
       // Maaltijden
       const mealCheckboxes = document.querySelectorAll('input.mealTask');
@@ -277,13 +471,12 @@
       document.getElementById('progressSupplements').innerText = `Supplementen: ${supplementChecked.length} van ${supplementCheckboxes.length} items voltooid`;
     }
 
-    // Event listeners toevoegen aan alle checkboxes
+    // Voeg event listeners toe aan alle bestaande checkboxes bij DOM-load
     document.addEventListener("DOMContentLoaded", function() {
       const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
       allCheckboxes.forEach(cb => {
         cb.addEventListener('change', updateProgress);
       });
-      // Update voortgang bij het laden
       updateProgress();
     });
   </script>
