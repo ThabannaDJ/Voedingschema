@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Whole Food Sportdieet Schema</title>
+  <!-- Google Fonts voor een stoere uitstraling -->
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    /* Basis opmaak */
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #1e1e1e, #323232);
+      color: #f1f1f1;
+      margin: 0;
+      padding: 10px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 10px;
+    }
+    h1 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 2em;
+      color: #ff5722;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    p {
+      margin: 0 0 10px;
+    }
+    /* Voortgangs-indicator styling */
+    .progress-container {
+      display: flex;
+      justify-content: space-around;
+      margin: 10px 0;
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #ff5722;
+    }
+    /* Details en summary styling */
+    details {
+      background: #2c2c2c;
+      border: 2px solid #ff5722;
+      border-radius: 8px;
+      margin: 8px 0;
+      padding: 0;
+      transition: all 0.3s ease;
+    }
+    summary {
+      font-family: 'Oswald', sans-serif;
+      font-weight: bold;
+      font-size: 1.2em;
+      padding: 10px;
+      list-style: none;
+      cursor: pointer;
+      color: #ff5722;
+      background-color: #3a3a3a;
+      border-radius: 8px;
+    }
+    summary::-webkit-details-marker {
+      display: none;
+    }
+    details[open] summary {
+      border-bottom: 1px solid #ff5722;
+    }
+    .meal-content {
+      padding: 10px 15px 15px 15px;
+    }
+    ul {
+      padding-left: 20px;
+      margin: 5px 0;
+    }
+    li {
+      margin: 5px 0;
+    }
+    .note {
+      font-style: italic;
+      color: #ccc;
+      margin-top: 5px;
+    }
+    /* Knoppen styling */
+    .button-container {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    button {
+      background-color: #ff5722;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      margin: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1em;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #e64a19;
+    }
+    /* Custom styled checkboxes */
+    input[type="checkbox"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border: 2px solid #ff5722;
+      border-radius: 4px;
+      margin-right: 8px;
+      cursor: pointer;
+      position: relative;
+      background-color: transparent;
+      vertical-align: middle;
+    }
+    input[type="checkbox"]:checked {
+      background-color: #ff5722;
+    }
+    input[type="checkbox"]:checked::after {
+      content: "\2713";
+      color: #ffffff;
+      position: absolute;
+      top: 0px;
+      left: 4px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Voedingsschema (Whole Food Sportdieet)</h1>
+    <p>
+      <strong>Profiel:</strong> 21 jaar, 67&nbsp;kg (doel 60&nbsp;kg). 
+      <strong>Doel:</strong> Vetverlies voor een strakker lichaam met behoud van spiermassa.
+      <br><strong>Training:</strong> dagelijks om 21:00 uur.
+    </p>
+    <p><em>Tik op een maaltijd/snack om details te bekijken en vink de box aan als je deze hebt uitgevoerd.</em></p>
+
+    <!-- Twee voortgangs-indicatoren -->
+    <div class="progress-container">
+      <div id="progressMeals">Maaltijden: 0 van 0 items voltooid</div>
+      <div id="progressSupplements">Supplementen: 0 van 0 items voltooid</div>
+    </div>
+    
+    <div class="button-container">
+      <button onclick="toggleDetails(true)">Alles uitklappen</button>
+      <button onclick="toggleDetails(false)">Alles inklappen</button>
+      <button onclick="resetCheckboxes()">Reset checklist</button>
+    </div>
+
+    <!-- Maaltijdsectie -->
+    <div id="mealsContainer">
+      <details>
+        <summary>Ontbijt (±08:00) – Eiwitrijke smoothie</summary>
+        <div class="meal-content">
+          <ul>
+            <li>
+              <input type="checkbox" class="mealTask">
+              <strong>Smoothie</strong> met 1 schep lactosevrij eiwitpoeder, 250 ml amandelmelk, 1 banaan, een handje spinazie, 50 g bessen en 1 el chiazaad.
+            </li>
+          </ul>
+          <p class="note">Voedzaam ontbijt, rijk aan eiwit en koolhydraten voor energie. Vrij van lactose, ei en ui.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Snack 1 (±11:00) – Yoghurt, fruit en noten</summary>
+        <div class="meal-content">
+          <ul>
+            <li><input type="checkbox" class="mealTask">150 g lactosevrije Griekse yoghurt</li>
+            <li><input type="checkbox" class="mealTask">50 g blauwe bessen (of ander fruit naar keuze)</li>
+            <li><input type="checkbox" class="mealTask">Een handje pecannoten (of andere ongezouten noten)</li>
+          </ul>
+          <p class="note">Bevat circa 10 g eiwit plus gezonde vetten en antioxidanten. Houdt je energiek tot de lunch.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Lunch (±13:00) – Gegrilde kip, zoete aardappel &amp; groenten</summary>
+        <div class="meal-content">
+          <ul>
+            <li><input type="checkbox" class="mealTask">150 g gegrilde kipfilet (gekruid met peper en kruiden naar smaak)</li>
+            <li><input type="checkbox" class="mealTask">1 middelgrote zoete aardappel (ongeveer 150 g, geroosterd of gestoomd)</li>
+            <li><input type="checkbox" class="mealTask">Ongeveer 200 g groenten (bijv. broccoli, wortel, courgette) – gekookt of gestoomd</li>
+            <li><input type="checkbox" class="mealTask">1 el olijfolie en 1/4 avocado (voor gezonde vetten)</li>
+          </ul>
+          <p class="note">Hoge eiwitlunch met vezels, vitaminen (A, C) en kalium. Geeft langdurige verzadiging en energie.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Diner (±18:30) – Zalm, rijst &amp; groene groenten (2–3u voor training)</summary>
+        <div class="meal-content">
+          <ul>
+            <li><input type="checkbox" class="mealTask">150 g zalmfilet (gebakken of uit de oven, gekruid met citroen en peper)</li>
+            <li><input type="checkbox" class="mealTask">1 kop gekookte witte rijst (ongeveer 150–200 g bereid gewicht)</li>
+            <li><input type="checkbox" class="mealTask">Ongeveer 200 g groene groenten (bijv. broccoli, spinazie) – gestoofd of gewokt in 1 tl olijfolie</li>
+          </ul>
+          <p class="note">Licht verteerbaar pre-workout diner met veel eiwit en koolhydraten voor energie. Omega-3 uit zalm ondersteunt herstel.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Snack 2 (±22:00 na training) – Herstelshake</summary>
+        <div class="meal-content">
+          <ul>
+            <li><input type="checkbox" class="mealTask">1 schep lactosevrij eiwitpoeder (20–25 g eiwit) shaken met water of amandelmelk</li>
+            <li><input type="checkbox" class="mealTask">1 kleine banaan of 1 dadel (voor snelle koolhydraten en kalium)</li>
+          </ul>
+          <p class="note">Post-workout snack voor spierreparatie en aanvulling van glycogeen. Licht en snel opneembaar.</p>
+        </div>
+      </details>
+    </div>
+
+    <hr/>
+    <!-- Supplementensectie -->
+    <div id="supplementsContainer">
+      <h1 style="font-size:1.8em; text-align:center;">Supplementen</h1>
+      <ul>
+        <li>
+          <input type="checkbox" class="supplementTask">
+          <strong>Creatine (3–5 g/dag):</strong> Verbetert kracht en spierbehoud, zeer effectief en veilig voor vrouwen.
+        </li>
+        <li>
+          <input type="checkbox" class="supplementTask">
+          <strong>Vitamine D3 (1000–2000 IU):</strong> Veel vrouwen hebben een tekort; ondersteunt botten, spieren en het immuunsysteem.
+        </li>
+        <li>
+          <input type="checkbox" class="supplementTask">
+          <strong>Calcium (~1000 mg/dag):</strong> Belangrijk bij een lactosevrij dieet; via voeding (groene groenten, verrijkte melk) of supplement.
+        </li>
+        <li>
+          <input type="checkbox" class="supplementTask">
+          <strong>IJzer (bij verhoogd risico):</strong> Ter preventie van ijzertekort door menstruatie; laat waarden checken en overleg voor suppletie.
+        </li>
+        <li>
+          <input type="checkbox" class="supplementTask">
+          <strong>Omega-3 (visolie):</strong> 1000 mg EPA/DHA indien minder dan 2x per week vette vis; ondersteunt hart en ontstekingsremming.
+        </li>
+        <li>
+          <input type="checkbox" class="supplementTask">
+          <strong>Magnesium (200–400 mg):</strong> Voor spierontspanning en herstel; bij voorkeur 's avonds innemen voor betere slaap.
+        </li>
+      </ul>
+      <p class="note" style="text-align:center;">*Naast supplementen is gevarieerde voeding essentieel. Zorg voor voldoende groenten, fruit, noten en water voor optimale voeding.*</p>
+    </div>
+  </div>
+
+  <script>
+    // Functie om alle details uit/inklappen
+    function toggleDetails(expand) {
+      const details = document.querySelectorAll("details");
+      details.forEach(detail => {
+        detail.open = expand;
+      });
+    }
+
+    // Functie om alle checkboxes te resetten
+    function resetCheckboxes() {
+      const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+      allCheckboxes.forEach(cb => cb.checked = false);
+      updateProgress();
+    }
+
+    // Functie om de voortgang voor beide secties te updaten
+    function updateProgress() {
+      // Maaltijden
+      const mealCheckboxes = document.querySelectorAll('input.mealTask');
+      const mealChecked = document.querySelectorAll('input.mealTask:checked');
+      document.getElementById('progressMeals').innerText = `Maaltijden: ${mealChecked.length} van ${mealCheckboxes.length} items voltooid`;
+      
+      // Supplementen
+      const supplementCheckboxes = document.querySelectorAll('input.supplementTask');
+      const supplementChecked = document.querySelectorAll('input.supplementTask:checked');
+      document.getElementById('progressSupplements').innerText = `Supplementen: ${supplementChecked.length} van ${supplementCheckboxes.length} items voltooid`;
+    }
+
+    // Event listeners toevoegen aan alle checkboxes
+    document.addEventListener("DOMContentLoaded", function() {
+      const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+      allCheckboxes.forEach(cb => {
+        cb.addEventListener('change', updateProgress);
+      });
+      // Update voortgang bij het laden
+      updateProgress();
+    });
+  </script>
+</body>
+</html>
